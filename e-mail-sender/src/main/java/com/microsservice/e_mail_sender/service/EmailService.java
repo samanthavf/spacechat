@@ -12,6 +12,7 @@ public class EmailService {
 	
 	private final JavaMailSender mailSender;
 	
+	
 	public void sendValidationEmail(String toEmail, String token){
 		
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
