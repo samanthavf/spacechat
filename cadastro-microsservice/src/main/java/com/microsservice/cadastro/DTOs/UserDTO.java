@@ -1,5 +1,7 @@
 package com.microsservice.cadastro.DTOs;
 
-public record UserDTO() {
+import java.util.UUID;
+
+public record UserDTO(UUID id, String name, String email, String password) {
 
 }
