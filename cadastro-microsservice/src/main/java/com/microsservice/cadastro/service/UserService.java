@@ -14,22 +14,23 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 
 
+
 @RequiredArgsConstructor
 @Service
 public class UserService {
 	private final UserRepo repo;
+	
 	
 	//create
 	public UsersRequest create(UserDTO dto) throws Exception {
 		List<UsersRequest> userExiste = repo.findByEmail(dto.email());
 		if (!userExiste.isEmpty()) {
 			throw new Exception("Usuário com e-mail cadastrado");
-		}
+			}
 		UsersRequest newUser = new UsersRequest();
 		newUser.setName(dto.name());
 		newUser.setEmail(dto.email());
 		newUser.setPassword(dto.password());
-		
 		return repo.save(newUser);
 	}
 	
@@ -39,10 +40,11 @@ public class UserService {
 	}
 	
 	//delete by email
-	public void delete(String email) {
+	public void delete(String email){
 		if (!repo.existsByEmail(email)) {
 			throw new EntityNotFoundException("Cliente não encontrado");
 		}
 		repo.deleteByEmail(email);
 	}
+	
 }
