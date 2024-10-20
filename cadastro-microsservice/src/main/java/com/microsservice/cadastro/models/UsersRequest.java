@@ -2,6 +2,7 @@ package com.microsservice.cadastro.models;
 
 import java.util.UUID;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -20,6 +21,7 @@ public class UsersRequest {
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
 	private String name;
+	@Column(name = "email", nullable = false, unique = true)
 	private String email;
 	private String password;
 }
