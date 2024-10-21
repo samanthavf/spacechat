@@ -1,9 +1,10 @@
 package com.microsservice.cadastro.service;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.microsservice.cadastro.DTOs.UserDTO;
@@ -19,27 +20,24 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService {
 	private final UserRepo repo;
+	private final PasswordEncoder encoder;
 	
-	
-	//create
 	public UsersRequest create(UserDTO dto) throws Exception {
-		List<UsersRequest> userExiste = repo.findByEmail(dto.email());
+		Optional<UsersRequest> userExiste = repo.findByEmail(dto.email());
 		if (!userExiste.isEmpty()) {
 			throw new Exception("Usuário com e-mail cadastrado");
 			}
 		UsersRequest newUser = new UsersRequest();
 		newUser.setName(dto.name());
 		newUser.setEmail(dto.email());
-		newUser.setPassword(dto.password());
+		newUser.setPassword(encoder.encode(dto.password()));
 		return repo.save(newUser);
 	}
 	
-	//read
 	public Page<UsersRequest> read(Pageable pageable){
 		return repo.findAll(pageable);
 	}
 	
-	//delete by email
 	public void delete(String email){
 		if (!repo.existsByEmail(email)) {
 			throw new EntityNotFoundException("Cliente não encontrado");
