@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.microsservice.cadastro.security.CustomUserDetailsService;
+import com.microsservice.cadastro.security.SecurityService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 public class SecurityConfigFilter{
 	
-	private final CustomUserDetailsService detailsService;
+	private final SecurityService service;
 	
 	@Bean
 	 SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
@@ -31,7 +31,7 @@ public class SecurityConfigFilter{
 	            .anyRequest().authenticated()
 	            )
 	            .httpBasic(Customizer.withDefaults())
-	            .userDetailsService(detailsService)
+	            .userDetailsService(service)
 	            .build();
 	}
 	
@@ -39,4 +39,6 @@ public class SecurityConfigFilter{
 	PasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	
 }

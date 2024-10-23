@@ -31,6 +31,7 @@ public class UserService {
 		newUser.setName(dto.name());
 		newUser.setEmail(dto.email());
 		newUser.setPassword(encoder.encode(dto.password()));
+		
 		return repo.save(newUser);
 	}
 	
@@ -44,5 +45,6 @@ public class UserService {
 		}
 		repo.deleteByEmail(email);
 	}
+	
 	
 }
