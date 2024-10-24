@@ -28,6 +28,7 @@ public class SecurityConfigFilter{
 	            .authorizeHttpRequests(auth -> auth
 	            .requestMatchers(HttpMethod.POST).permitAll()
 	            .requestMatchers(HttpMethod.GET).permitAll()
+	            .requestMatchers(HttpMethod.DELETE).permitAll()
 	            .anyRequest().authenticated()
 	            )
 	            .httpBasic(Customizer.withDefaults())

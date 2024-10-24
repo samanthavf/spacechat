@@ -10,7 +10,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.microsservice.cadastro.DTOs.UserDTO;
+import com.microsservice.cadastro.configs.EmailServiceClient;
 import com.microsservice.cadastro.models.UsersRequest;
+import com.microsservice.cadastro.models.VerificationRequest;
 import com.microsservice.cadastro.repository.UserRepo;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityService implements UserDetailsService{
 	private final UserRepo repo;
 	private final TokenService service;
+    private final EmailServiceClient emailServiceClient;
 
 	
 	public Map<String, String> register(UserDTO dto) throws Exception {
@@ -39,6 +42,9 @@ public class SecurityService implements UserDetailsService{
 		Map<String, String> response = new HashMap<>();
 		response.put("email", request.getEmail());
 		response.put("token", Token);
+		
+		VerificationRequest emailRequest = new VerificationRequest(request.getEmail(), Token);
+		emailServiceClient.sendVerificationEmail(emailRequest);
 		
 		return response;
 	}

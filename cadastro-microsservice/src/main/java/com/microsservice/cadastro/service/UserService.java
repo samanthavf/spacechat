@@ -12,6 +12,7 @@ import com.microsservice.cadastro.models.UsersRequest;
 import com.microsservice.cadastro.repository.UserRepo;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 
@@ -33,12 +34,14 @@ public class UserService {
 		newUser.setPassword(encoder.encode(dto.password()));
 		
 		return repo.save(newUser);
+	
 	}
 	
 	public Page<UsersRequest> read(Pageable pageable){
 		return repo.findAll(pageable);
 	}
 	
+	@Transactional
 	public void delete(String email){
 		if (!repo.existsByEmail(email)) {
 			throw new EntityNotFoundException("Cliente não encontrado");

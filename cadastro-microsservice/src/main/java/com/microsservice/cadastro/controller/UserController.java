@@ -37,7 +37,7 @@ public class UserController {
 		return ResponseEntity.ok(service.read(pageable));
 	}
 	
-	@DeleteMapping(path = "/delete")
+	@DeleteMapping(path = "/delete/{email}")
 	public ResponseEntity<Void> delete(@PathVariable String email){
 		service.delete(email);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
