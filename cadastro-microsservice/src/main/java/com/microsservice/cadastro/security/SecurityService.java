@@ -53,8 +53,8 @@ public class SecurityService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 	  Optional<UsersRequest> users = repo.findByEmail(username);
-	UsersRequest user = users.orElseThrow(( ) -> new UsernameNotFoundException("Usuário não encontrado" + username));
-		return user;
+	  UsersRequest user = users.orElseThrow(( ) -> new UsernameNotFoundException("Usuário não encontrado" + username));
+	  return user;
 	}
 
 }
