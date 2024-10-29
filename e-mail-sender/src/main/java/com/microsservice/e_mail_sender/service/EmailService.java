@@ -19,9 +19,8 @@ public class EmailService {
 		SimpleMailMessage mailMessage = new SimpleMailMessage();
 		mailMessage.setTo(request.getEmail());
 		mailMessage.setSubject("Confirmação de Cadastro");
-		mailMessage.setText("Por favor, clique no link abaixo para validar sua conta:\n"
+		mailMessage.setText("Por favor, clique no link abaixo para validar sua conta:\n  COLOCAR A PÁGINA HTML"
                 + "http://localhost:8080/validar?token=" + request.getToken());
-		
 		mailSender.send(mailMessage);
 	}
 
