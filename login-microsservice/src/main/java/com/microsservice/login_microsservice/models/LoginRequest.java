@@ -27,13 +27,13 @@ public class LoginRequest implements UserDetails{
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
 	@NonNull
-	private String token;
 	private String email;
 	private String senha;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority(email));
 	}
+	
 	@Override
 	public String getPassword() {
 		return this.senha;
