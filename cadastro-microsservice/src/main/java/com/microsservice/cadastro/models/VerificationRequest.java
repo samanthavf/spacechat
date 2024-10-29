@@ -7,6 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class VerificationRequest{
 	private String email;
-	private String token;
-	
+	private String senha;
 }

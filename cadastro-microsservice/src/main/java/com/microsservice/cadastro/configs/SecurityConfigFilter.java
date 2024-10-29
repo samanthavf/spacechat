@@ -10,16 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.microsservice.cadastro.security.SecurityService;
-
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class SecurityConfigFilter{
 	
-	private final SecurityService service;
 	
 	@Bean
 	 SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
@@ -32,7 +26,6 @@ public class SecurityConfigFilter{
 	            .anyRequest().authenticated()
 	            )
 	            .httpBasic(Customizer.withDefaults())
-	            .userDetailsService(service)
 	            .build();
 	}
 	
