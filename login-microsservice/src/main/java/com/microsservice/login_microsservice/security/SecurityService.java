@@ -50,9 +50,14 @@ public class SecurityService implements UserDetailsService{
             newUser.setSenha(user.getSenha());
             newUser.setLogedIn(true);
             repo.save(newUser);
-		}else {
-			throw new Exception("O usuário já está logado.");
-		}
+		} else {
+		    if (!findUser.get().isLogedIn()) { 
+		        findUser.get().setLogedIn(true);
+		        repo.save(findUser.get());
+		    } else {
+		        throw new Exception("O usuário já está logado.");
+		    }
+		    }
 
 	if (!encoder.matches(dto.senha(), user.getSenha())) {
 		throw new BadCredentialsException("Senha incorreta para o usuário: " + user.getEmail() + " senha: " + dto.senha());

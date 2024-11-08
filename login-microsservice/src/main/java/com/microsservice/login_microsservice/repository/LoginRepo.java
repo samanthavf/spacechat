@@ -20,6 +20,9 @@ public interface LoginRepo extends JpaRepository<LoginRequest, UUID> {
 	@Query("SELECT l FROM LoginRequest l WHERE l.email= :email")
 	List<LoginRequest> findByEmailList(@Param("email")String email);
 
+	@Query("SELECT l FROM LoginRequest l WHERE l.logedIn = :logedIn")
+	Optional<LoginRequest> findByLogedIn(@Param("logedIn") boolean logedIn);
+
 	
 	
 }
