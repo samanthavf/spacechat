@@ -33,7 +33,7 @@ public class UsersRequest implements UserDetails {
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of(new SimpleGrantedAuthority(email));
+		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 	@Override
 	public String getUsername() {
