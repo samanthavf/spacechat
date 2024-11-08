@@ -1,7 +1,10 @@
 package com.microsservice.login_microsservice.security;
 
 import java.util.Optional;
+import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -28,22 +31,59 @@ public class SecurityService implements UserDetailsService{
 	private final CadastroServiceClient client;
 	private final TokenService service;
 	
+	public Page<LoginRequest> readUser(Pageable pageable){
+		return repo.findAll(pageable);
+	}
 	
-	public LoginValidateRequestDTO login(final LoginRequestDTO dto) {		
+	
+	public LoginValidateRequestDTO login(final LoginRequestDTO dto) throws Exception{	
 	VerificationRequest request = new VerificationRequest(dto.email(), dto.senha());
      Optional<VerificationRequest> users = client.load(request);
-     VerificationRequest  user = users.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado " + dto.email()));
+     VerificationRequest  user = users.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado " + dto.email())); 	
      
-     
+        
+        Optional<LoginRequest> findUser = repo.findByEmail(user.getEmail());
+        LoginRequest newUser = new LoginRequest();
+        
+        if (!findUser.isPresent()) {
+        	newUser.setEmail(user.getEmail());
+            newUser.setSenha(user.getSenha());
+            newUser.setLogedIn(true);
+            repo.save(newUser);
+		}else {
+			throw new Exception("O usuário já está logado.");
+		}
+
 	if (!encoder.matches(dto.senha(), user.getSenha())) {
 		throw new BadCredentialsException("Senha incorreta para o usuário: " + user.getEmail() + " senha: " + dto.senha());
 	}
 	
-	final String Token = service.CreateToken(user);
-	
+ 	final String Token = service.CreateToken(user);
+
 	return new LoginValidateRequestDTO(Token);
-	
 	}
+	
+	public void logout(LoginRequestDTO dto) throws Exception {
+		Optional<LoginRequest> findUser = repo.findByEmail(dto.email());
+		
+		 if (findUser.isPresent()) {
+		        LoginRequest user = findUser.get();
+		        if (user.isLogedIn()) {
+		            user.setLogedIn(false);
+		            repo.save(user);
+		        } else {
+		            throw new Exception("O usuário já está deslogado.");
+		        }
+		    } else {
+		        throw new Exception("Usuário não encontrado.");
+		    }
+		
+	}
+	
+	public void delete(UUID id) {
+		repo.deleteById(id);
+	}
+	
 	
 	
 	public boolean validateToken(String token) {

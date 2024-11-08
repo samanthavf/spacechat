@@ -1,5 +1,7 @@
 package com.microsservice.login_microsservice.DTOs;
 
-public record LoginRequestDTO(String token, String email, String senha) {
+import jakarta.persistence.Column;
+
+public record LoginRequestDTO(@Column(unique = true) String email, String senha, boolean logedIn) {
 
 }
