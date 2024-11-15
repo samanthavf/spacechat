@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import com.microsservice.login_microsservice.DTOs.LoginRequestDTO;
 import com.microsservice.login_microsservice.DTOs.LoginValidateRequestDTO;
 import com.microsservice.login_microsservice.configs.CadastroServiceClient;
+import com.microsservice.login_microsservice.configs.EmailVerificationClient;
 import com.microsservice.login_microsservice.models.LoginRequest;
+import com.microsservice.login_microsservice.models.VerificatedEmail;
 import com.microsservice.login_microsservice.models.VerificationRequest;
 import com.microsservice.login_microsservice.repository.LoginRepo;
 
@@ -29,6 +31,7 @@ public class SecurityService implements UserDetailsService{
 	private final LoginRepo repo;
 	private final PasswordEncoder encoder;
 	private final CadastroServiceClient client;
+	private final EmailVerificationClient emailVerification;
 	private final TokenService service;
 	
 	public Page<LoginRequest> readUser(Pageable pageable){
@@ -38,18 +41,32 @@ public class SecurityService implements UserDetailsService{
 	
 	public LoginValidateRequestDTO login(final LoginRequestDTO dto) throws Exception{	
 	VerificationRequest request = new VerificationRequest(dto.email(), dto.senha());
+	
      Optional<VerificationRequest> users = client.load(request);
      VerificationRequest  user = users.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado " + dto.email())); 	
      
+     VerificatedEmail verificatedEmail = new VerificatedEmail(dto.id(),dto.email());
+     
+     Optional<VerificatedEmail> emailVerify = emailVerification.userVerify(verificatedEmail);
+     VerificatedEmail emailValid = emailVerify.orElseThrow(() -> new UsernameNotFoundException("e-mail não foi verificado." + dto.email()));
+     
+     
+     Optional<LoginRequest> findEmail = repo.findByEmail(emailValid.getEmail());
+     Optional<LoginRequest> findUser = repo.findByEmail(user.getEmail());
         
-        Optional<LoginRequest> findUser = repo.findByEmail(user.getEmail());
-        LoginRequest newUser = new LoginRequest();
+      LoginRequest newUser = new LoginRequest();
+     
+     if (!findEmail.isPresent()) {
+    	 newUser.setLogedIn(false);
+    	 throw new Exception("E-mail do usuário não foi verficado." + user.getEmail());
+    	
+	}
         
-        if (!findUser.isPresent()) {
-        	newUser.setEmail(user.getEmail());
-            newUser.setSenha(user.getSenha());
-            newUser.setLogedIn(true);
-            repo.save(newUser);
+     if (!findUser.isPresent()) {
+     	newUser.setEmail(user.getEmail());
+         newUser.setSenha(user.getSenha());
+         newUser.setLogedIn(true);
+         repo.save(newUser);
 		} else {
 		    if (!findUser.get().isLogedIn()) { 
 		        findUser.get().setLogedIn(true);

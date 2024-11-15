@@ -24,5 +24,7 @@ public interface LoginRepo extends JpaRepository<LoginRequest, UUID> {
 	Optional<LoginRequest> findByLogedIn(@Param("logedIn") boolean logedIn);
 
 	
+
+	
 	
 }

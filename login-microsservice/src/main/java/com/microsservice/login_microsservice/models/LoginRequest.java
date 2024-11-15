@@ -30,6 +30,7 @@ public class LoginRequest implements UserDetails{
 	private String email;
 	private String senha;
 	private boolean logedIn;
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority("ROLE_USER"));
