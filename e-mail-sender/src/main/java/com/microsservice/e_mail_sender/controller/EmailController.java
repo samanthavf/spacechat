@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.microsservice.e_mail_sender.models.EmailRequest;
 import com.microsservice.e_mail_sender.service.EmailService;
 
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 
 
@@ -19,8 +20,9 @@ public class EmailController {
 	private final EmailService service;
 	
 	@PostMapping("/send")
-	public ResponseEntity<EmailRequest> sendVerificationEmail(@RequestBody EmailRequest request){
+	public ResponseEntity<EmailRequest> sendVerificationEmail(@RequestBody EmailRequest request) throws MessagingException{
 		service.sendValidationEmail(request);
 		return ResponseEntity.ok(request);
 	}
+	
 }

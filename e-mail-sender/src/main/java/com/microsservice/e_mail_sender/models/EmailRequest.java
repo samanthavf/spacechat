@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 @Data
 public class EmailRequest {
 	private String email;
-	private String token;
 }
