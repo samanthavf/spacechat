@@ -17,9 +17,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "VALID_USERS")
 public class EmailRequest {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID) 
 	private UUID id;
 	private String email;
+	private boolean verificated = false;
 }

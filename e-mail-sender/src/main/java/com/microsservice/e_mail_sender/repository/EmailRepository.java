@@ -12,8 +12,10 @@ import com.microsservice.e_mail_sender.models.EmailRequest;
 
 @Repository
 public interface EmailRepository extends JpaRepository<EmailRequest, UUID> {
-
 	void save(String user);
+
+	@Query("SELECT u FROM EmailRequest u WHERE u.email = :email AND u.verificated = true")
+	Optional<EmailRequest> findByEmailAndVerify(@Param("email") String email);
 
 	@Query("SELECT u FROM EmailRequest u WHERE u.email= :email")
 	Optional<EmailRequest> findByEmail(@Param("email") String email);
