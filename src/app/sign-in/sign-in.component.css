@@ -1,0 +1,127 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    color: white;
+    font-family: 'Orbitron', sans-serif;  
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #000c1f, #001a40, #002a60, #003d80, #0055a1);
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+    overflow: hidden;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .main-container{
+    position: absolute;
+    top: 3%;
+    right: 30%;
+    width: 40%;
+    border-radius: 10px;
+    height: 95vh;
+    background-color: rgb(221, 239, 255, 0.7);
+    overflow: hidden;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+  }
+
+.container-video{
+  position: absolute;
+  width: 100%;
+  height: 30vh;
+  background-color: #001f3f;
+  overflow: hidden;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+#spaceman{
+  position: absolute;
+  top: -250%;
+}
+
+.input-container{
+  position: absolute;
+  height: 40vh;
+  width: 50%;
+  left: 25%;
+  top: 43%;
+}
+
+input{
+  border: none;
+  outline: none;
+  border: none;
+  width: 300px;
+  height: 35px;
+  border-radius: 3px;
+  margin: 20px;
+  background-color: rgb(221, 239, 255, 0.1);
+  border-bottom: 2px solid transparent;
+}
+
+.line{
+  position: absolute;
+  top: 38.5%;
+  width: 307px;
+  height: 5px;
+  margin: 25%;
+  left: 2.9%;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, #01f593, #00ccff,#00ccff, #01f593);
+  box-shadow: 
+    0 0 5px rgba(0, 204, 255, 0.5), 
+    0 0 10px rgba(0, 204, 255, 0.3), 
+    0 0 15px rgba(0, 102, 255, 0.5), 
+    0 0 20px rgba(0, 102, 255, 0.3); 
+}
+
+.line:nth-child(1) {
+  top: 40px; 
+}
+
+.line:nth-child(2) {
+  top: 28%; /* Segunda linha */
+}
+
+button{
+  position: absolute;
+  top: 69%;
+  left: 28%;
+  width: 300px;
+  height: 35px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  background: linear-gradient(90deg, #0073e6, #0059c1, #0073e6);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 115, 230, 0.2), 0 0 30px rgba(0, 89, 193, 0.2); /* Brilho em tons de Rosa e Roxo */
+}
+
+button:hover {
+  box-shadow: 0 0 15px rgba(0, 115, 230, 0.8), 0 0 30px rgba(0, 89, 193, 0.8); /* Brilho em tons de Rosa e Roxo */
+}
+
+.signup-link{
+  position: absolute;
+  top: 84%;
+  left: 37%;
+  color: rgb(104, 104, 104);
+}
+
+.login-title{
+  position: absolute;
+  left: 42%;
+  top: 33%;
+}
