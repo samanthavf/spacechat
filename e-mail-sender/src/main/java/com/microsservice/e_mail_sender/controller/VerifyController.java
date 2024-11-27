@@ -3,6 +3,7 @@ package com.microsservice.e_mail_sender.controller;
 import java.util.Optional;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
+@CrossOrigin(origins = "*")
 public class VerifyController {
 	private final EmailRepository repository;
 

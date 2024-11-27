@@ -4,9 +4,9 @@ import org.apache.coyote.BadRequestException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,10 +21,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("email")
+@CrossOrigin(origins = "*")
 public class EmailController {
 	private final EmailService service;
 	
-	@PutMapping("/send")
+	@PostMapping("/send")
 	public ResponseEntity<EmailRequest> sendVerificationEmail(@RequestBody EmailRequest request) throws MessagingException, BadRequestException{
 		service.sendValidationEmail(request);
 		return ResponseEntity.ok(request);
