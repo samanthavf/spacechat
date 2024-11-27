@@ -24,7 +24,7 @@ public class SecurityService implements UserDetailsService{
     private final EmailServiceClient emailServiceClient;
     
 	
-	public void register(UserDTO dto) throws Exception {
+	public UsersRequest register(UserDTO dto) throws Exception {
 		   Optional<UsersRequest> userExiste = repo.findByEmail(dto.email());
 		    if (userExiste.isPresent()) {
 		        throw new Exception("Usuário com e-mail já cadastrado.");
@@ -34,11 +34,12 @@ public class SecurityService implements UserDetailsService{
 		request.setName(dto.name());
 		request.setEmail(dto.email());
 		request.setPassword(encoder.encode(dto.password()));
-		repo.save(request);
+		UsersRequest savedUser = repo.save(request);
 				
 		VerificationRequest emailRequest = new VerificationRequest(request.getEmail(), request.getPassword());
 		emailServiceClient.sendVerificationEmail(emailRequest);
 		
+		return savedUser;
 	}
 	
 	public VerificationRequest load(VerificationRequest request) throws UsernameNotFoundException {

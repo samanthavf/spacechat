@@ -16,8 +16,8 @@ public class SecurityConfigFilter{
 	
 	
 	@Bean
-	 SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
-		return security
+	 SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+		return http
 				.csrf(csfr -> csfr.disable())
 	            .authorizeHttpRequests(auth -> auth
 	            .requestMatchers(HttpMethod.POST).permitAll()
@@ -25,8 +25,9 @@ public class SecurityConfigFilter{
 	            .requestMatchers(HttpMethod.DELETE).permitAll()
 	            .anyRequest().authenticated()
 	            )
-	            .httpBasic(Customizer.withDefaults())
-	            .build();
+                .httpBasic(Customizer.withDefaults()) 
+                .cors(Customizer.withDefaults())
+                .build();
 	}
 	
 	@Bean

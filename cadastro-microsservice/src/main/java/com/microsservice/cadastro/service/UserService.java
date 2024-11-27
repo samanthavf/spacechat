@@ -15,8 +15,6 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
-
-
 @RequiredArgsConstructor
 @Service
 public class UserService {

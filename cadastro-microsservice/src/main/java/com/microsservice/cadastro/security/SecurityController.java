@@ -1,16 +1,13 @@
 package com.microsservice.cadastro.security;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.microsservice.cadastro.DTOs.UserDTO;
+import com.microsservice.cadastro.models.UsersRequest;
 import com.microsservice.cadastro.models.VerificationRequest;
 
 import jakarta.validation.Valid;
@@ -20,22 +17,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("auth")
-@CrossOrigin(origins = "*")
 public class SecurityController {
 	private final SecurityService service;
 	
 	@PostMapping("/register")
-	public ResponseEntity<Map<String, String>> register(@RequestBody @Valid UserDTO dto){
+	public ResponseEntity<UsersRequest> register(@RequestBody @Valid UserDTO dto){
 		try {
-			service.register(dto);
-			Map<String, String> response = new HashMap<>();
-			response.put("message", "Usuário registrado");
-			return ResponseEntity.ok(response);
-			
+			 UsersRequest registeredUser = service.register(dto);
+			 return ResponseEntity.ok(registeredUser);
 		} catch (Exception e) {
-			 Map<String, String> errorResponse = new HashMap<>();
-		      errorResponse.put("error", e.getMessage());
-		      return ResponseEntity.badRequest().body(errorResponse);
+			UsersRequest errorResponse = new UsersRequest();
+	        errorResponse.setName("Error");
+	        errorResponse.setEmail(e.getMessage());
+	        return ResponseEntity.badRequest().body(errorResponse);
 		}
 		}
 	
