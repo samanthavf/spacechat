@@ -1,6 +1,6 @@
-body {
+.body {
     margin: 0;
-    height: 100vh;
+    height: 99vh;
     display: flex;
     color: white;
     font-family: 'Orbitron', sans-serif;  
@@ -101,7 +101,7 @@ body {
     display: inline-block;
     height: 55vh;
     width: 40%;
-    left: 57%;
+    left: 25%;
   }
 
 input{
@@ -120,7 +120,7 @@ input{
   position: absolute;
   width: 307px;
   height: 5px;
-  right: -2%;
+  right: 24.6%;
   margin: 25%;
   box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
   background: linear-gradient(90deg, #00ffff, #ff007f, #ff007f, #00ffff);
@@ -129,21 +129,21 @@ input{
 }
 
 .line:nth-child(1) {
-  top: -40px; /* Primeira linha */
+  top: -96px; /* Primeira linha */
 }
 
 .line:nth-child(2) {
-  top: 59px; /* Segunda linha */
+  top: 4px; /* Segunda linha */
 }
 
 .line:nth-child(3) {
-  top: 158px; /* Terceira linha */
+  top: 98px; /* Terceira linha */
 }
 
 button{
   position: absolute;
   top: 73%;
-  right: 105px;
+  left: 32px;
   width: 300px;
   height: 35px;
   border: none;
@@ -168,6 +168,6 @@ button:hover {
 .login-link{
   position: absolute;
   top: 86%;
-  left: 37%;
+  left: 24.7%;
   color: rgb(121, 120, 120);
 }

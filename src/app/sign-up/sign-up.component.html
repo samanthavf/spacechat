@@ -1,4 +1,4 @@
-<body>
+<div class="body">
     <div class="background-container">
         <div class="spaceman">
             <video id="spaceman" autoplay loop muted >
@@ -13,19 +13,19 @@
 
     <div class="input-container">
 
-        <div class="line"></div>
+        <div class="line"></div> 
         <div class="line"></div>
         <div class="line"></div>
 
-        <input type="text" placeholder="username"> 
-        <input type="email" placeholder="email"> 
-        <input type="password" placeholder="password">
+        <input type="text" [(ngModel)]="user.name" placeholder="username"> 
+        <input type="email" [(ngModel)]="user.email" placeholder="email"> 
+        <input type="password" [(ngModel)]="user.password" placeholder="password">
 
-        <button type="submit">Submit</button>
+        <button type="submit" (click)="send()">Submit</button>
 
         <a href="/sign-in" class="login-link">Login</a>
       </div>
 
 
       
-</body>
+    </div>
