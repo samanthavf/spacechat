@@ -3,6 +3,7 @@ import { userData } from "../model/userdata.model";
 import { PagedResponse } from "../model/paged.response";
 import { Observable } from "rxjs";
 import { HttpClient, HttpHeaders} from "@angular/common/http";
+import { userLogin } from "../model/userdata.login";
 
 @Injectable({
     providedIn: 'root'
@@ -40,7 +41,13 @@ export class userService{
 //SIGN IN CONFIGS
 //postUrl
 private loginUrl:string='http://localhost:8082/auth/login';
-
-
+login(user:userLogin):Observable<userLogin>{
+  console.log(user)
+  const headers = new HttpHeaders({
+      'Content-Type': 'application/json',  // Definindo o tipo de conteúdo como JSON
+      'Accept': 'application/json'         // Garantindo que aceitamos JSON na resposta
+    });
+  return this.http.post<userLogin>(this.loginUrl , JSON.stringify(user), { headers });
+}
 
 }
