@@ -33,6 +33,7 @@ public class SecurityConfigs {
 	            )
 	            .addFilterBefore(this.filter, UsernamePasswordAuthenticationFilter.class)
 	            .httpBasic(Customizer.withDefaults())
+	            .cors(Customizer.withDefaults())
 	            .build();
 	}
 	

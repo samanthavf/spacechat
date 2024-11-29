@@ -39,7 +39,7 @@ public class SecurityService implements UserDetailsService{
 	}
 	
 	
-	public LoginValidateRequestDTO login(final LoginRequestDTO dto) throws Exception{	
+	public LoginValidateRequestDTO login(final LoginRequestDTO dto) throws Exception{
 	VerificationRequest request = new VerificationRequest(dto.email(), dto.senha());
 	
      Optional<VerificationRequest> users = client.load(request);
@@ -52,18 +52,27 @@ public class SecurityService implements UserDetailsService{
      
      
      Optional<LoginRequest> findEmail = repo.findByEmail(emailValid.getEmail());
-     Optional<LoginRequest> findUser = repo.findByEmail(user.getEmail());
+     Optional<LoginRequest> findUser = repo.findByEmail(dto.email());
         
       LoginRequest newUser = new LoginRequest();
      
      if (!findEmail.isPresent()) {
     	 newUser.setLogedIn(false);
     	 throw new Exception("E-mail do usuário não foi verficado." + user.getEmail());
-    	
+	}
+     
+ 	if (dto.senha() == null || dto.senha().isEmpty()) {
+		findUser.ifPresent(u -> {u.setLogedIn(false); repo.save(u);});
+		throw new BadCredentialsException("A senha fornecida é nula ou vazia.");
+	}
+     
+ 	if (!encoder.matches(dto.senha(),user.getSenha())) {
+		findUser.ifPresent(u -> {u.setLogedIn(false); repo.save(u);});
+		throw new BadCredentialsException("Senha incorreta para o usuário: " + user.getEmail() + " senha: " + user.getSenha());
 	}
         
      if (!findUser.isPresent()) {
-     	newUser.setEmail(user.getEmail());
+     	 newUser.setEmail(user.getEmail());
          newUser.setSenha(user.getSenha());
          newUser.setLogedIn(true);
          repo.save(newUser);
@@ -73,15 +82,9 @@ public class SecurityService implements UserDetailsService{
 		        repo.save(findUser.get());
 		    } else {
 		        throw new Exception("O usuário já está logado.");
-		    }
-		    }
+		}}
 
-	if (!encoder.matches(dto.senha(), user.getSenha())) {
-		throw new BadCredentialsException("Senha incorreta para o usuário: " + user.getEmail() + " senha: " + dto.senha());
-	}
-	
  	final String Token = service.CreateToken(user);
-
 	return new LoginValidateRequestDTO(Token);
 	}
 	
