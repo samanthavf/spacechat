@@ -1,12 +1,13 @@
-<div class="chat-container">
-    <div class="messages">
-      <div *ngFor="let msg of messages" class="message">
-        {{ msg }}
-      </div>
+  <div class="chat-container">
+    <h2>Live Chat</h2>
+    <div class="chat-box">
+      <div *ngFor="let msg of messages$ | async" class="chat-message"> {{ msg }}</div>
     </div>
-  
     <div class="input-container">
-      <input [(ngModel)]="message" placeholder="Digite sua mensagem..." />
+      <p><strong>User:</strong></p>
+      <input type="text" [(ngModel)]="user" placeholder="Digite seu username" />
+      <p><strong>Message:</strong></p>
+      <input type="text" [(ngModel)]="message" placeholder="Digite sua mensagem..." />
       <button (click)="sendMessage()">Enviar</button>
     </div>
   </div>

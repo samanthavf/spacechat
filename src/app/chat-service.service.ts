@@ -1,44 +1,58 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { Client } from '@stomp/stompjs';
 import { BehaviorSubject } from 'rxjs';
 import SockJS from 'sockjs-client';
+import { Chat } from './model/chat.model';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatServiceService {
-  private stompClient!: Client;
-  private messageSubject = new BehaviorSubject<string>('');
-  public messages$ = this.messageSubject.asObservable();
-  constructor() {
-    this.connect();
-   }
+  private client!: Client;
+  private messagesSubject = new BehaviorSubject<string[]>([]);
+  messages$ = this.messagesSubject.asObservable();
 
-  private connect(){
-    this.stompClient = new Client({
-      webSocketFactory: () => new SockJS('http://localhost:8084/buildrun-livechat'),
-      reconnectDelay: 500
+ 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      this.connect();
+    }
+  }
+
+
+  private connect() {
+    this.client = new Client({
+      brokerURL: 'ws://localhost:8084/buildrun-livechat',
+      reconnectDelay: 5000, 
+      onConnect: () => {
+        console.log('Conectado ao WebSocket');
+        this.client.subscribe('/topics/livechat', (message) => {
+          this.addMessage(message.body);
+        });
+      },
+      onStompError: (frame) => {
+        console.error('Erro no WebSocket:', frame);
+      },
     });
 
-    this.stompClient.onConnect = () =>{
-      console.log('Conectado ao WebSocket!');
-
-      // Assina o tópico para receber mensagens
-      this.stompClient.subscribe('/topics/livechat', (message) => {
-        this.messageSubject.next(message.body);
-      });
-    };
-
-    this.stompClient.activate();
+    this.client.activate();
   }
 
-// Enviar mensagem para o servido
-sendMessage(message: string){
-  if(this.stompClient.connected){
-    this.stompClient.publish({destination: '/app/new-message', body:message});
-  }else{
-    console.warn('WebSocket não está conectado.')
+
+sendMessage(user: string, message: string) {
+  if (this.client.connected) {
+    this.client.publish({
+      destination: '/app/new-message',
+      body: JSON.stringify({ user, message }),
+    });
   }
 }
 
+private addMessage(msg: string) {
+  this.messagesSubject.next([...this.messagesSubject.value, msg]);
 }
+
+}
+
+
