@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { userService } from '../service/user.services';
 import { catchError, of } from 'rxjs';
@@ -17,9 +17,23 @@ import { Router } from '@angular/router';
   styleUrl: './sign-in.component.css'
 }) 
 export class SignInComponent {
-  constructor(private userServico:userService, private router: Router){}
+  constructor(private userServico:userService, private router: Router,private renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: Object){}
   user = new userLogin();
   users:userLogin[] = [];
+
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.renderer.addClass(document.body, 'sign-in-bg');
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.renderer.removeClass(document.body, 'sign-in-bg');
+    }
+  }
 
   login() {
     this.userServico.login(this.user).pipe(

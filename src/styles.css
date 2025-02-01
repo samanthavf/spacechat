@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    height: 99vh;
+    display: flex;
+    color: white;
+    font-family: 'Orbitron', sans-serif;  
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #1f006c, #29008a, #5200a3, #8900d4, #00c8ff);
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+    overflow: hidden;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .sign-in-bg {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    color: white;
+    font-family: 'Orbitron', sans-serif;  
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(120deg, #000c1f, #001a40, #002a60, #003d80, #0055a1);
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+    overflow: hidden;
+  }
+  
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
