@@ -12,7 +12,7 @@ export class ChatServiceService {
   private client!: Client;
   private messagesSubject = new BehaviorSubject<string[]>([]);
   messages$ = this.messagesSubject.asObservable();
-
+ 
  
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     if (isPlatformBrowser(this.platformId)) {

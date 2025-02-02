@@ -1,4 +1,4 @@
 export class Chat{
-    user:String=''
-    message:String =''
+    user:String='';
+    message:String ='';
 }
