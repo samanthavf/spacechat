@@ -1,4 +1,4 @@
 export class ChatModel{
-    name:string='';
+    user:string='';
     message:string='';
 }
