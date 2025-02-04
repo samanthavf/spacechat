@@ -31,6 +31,7 @@ send():void{
     retorno => {
       if (retorno) {
         this.users.push(retorno);
+        localStorage.setItem('userData', JSON.stringify(userData)); 
         this.user = new userData();
         alert('Check your email to confirm the registration!');
       }});

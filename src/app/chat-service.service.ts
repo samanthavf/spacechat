@@ -4,6 +4,7 @@ import { Client } from '@stomp/stompjs';
 import { BehaviorSubject } from 'rxjs';
 import { ChatModel } from './model/chat.model';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,7 @@ messages$ = this.messagesSubject.asObservable();
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
 if (isPlatformBrowser(this.platformId)) {
   this.connect();
+
 }}
 
 private connect(){
@@ -37,7 +39,7 @@ private connect(){
 
  sendMessage(output:ChatModel){
   if (this.client.connected) {
-    console.log('📤 Enviando mensagem:', { output});
+    console.log('📤 Enviando mensagem:', {output});
     this.client.publish({
       destination: '/app/new-message',
       body: JSON.stringify({output})

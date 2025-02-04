@@ -11,12 +11,11 @@
   </div>
 
   <div class="message-container">
-    <div *ngFor="let msg of outputs" class="chat-message">{{msg}}</div>
+    <div *ngFor="let msg of outputs" class="chat-message"> <strong>{{ msg.user }}</strong>: {{ msg.message }} </div>
   </div>
 
   <div class="message-send">
-    <input type="hidden" [(ngModel)]="output.user" />
-    <input type="text" [(ngModel)]="output.message" placeholder="Digite sua mensagem..." />
+    <input type="text" [(ngModel)]="message" placeholder="Digite sua mensagem..." />
     <button (click)="sendMessage()">Enviar</button>
   </div>
 
