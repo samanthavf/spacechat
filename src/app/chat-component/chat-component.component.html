@@ -11,7 +11,7 @@
   </div>
 
   <div class="message-container">
-    <div *ngFor="let msg of outputs" class="chat-message"> <strong>{{ msg.user }}</strong>: {{ msg.message }} </div>
+    <div *ngFor="let msg of messages$ | async" class="chat-message"> <strong>{{user}}</strong>{{msg.message}}</div>
   </div>
 
   <div class="message-send">
