@@ -16,26 +16,26 @@ import { catchError, of } from 'rxjs';
   styleUrl: './sign-up.component.css'
 })
 export class SignUpComponent {
-constructor(private userServico:userService){}
-user = new userData();
-users:userData[] = [];
+  constructor(private userServico: userService) { }
+  user = new userData();
+  users: userData[] = [];
 
-send():void{
-  this.userServico.cadastrar(this.user).pipe(
-    catchError(erro => {
-      console.error('Erro ao cadastrar o usuário:', erro);
-      alert('An error occurred during registration. Please try again later.');
-      return of(null); // Retorna um valor "neutro" para continuar o fluxo
-  })
-  ).subscribe(
-    retorno => {
-      if (retorno) {
-        this.users.push(retorno);
-        localStorage.setItem('userName', retorno.name); 
-        this.user = new userData();
-        alert('Check your email to confirm the registration!');
-      }});
-}
+  send(): void {
+    this.userServico.cadastrar(this.user).pipe(
+      catchError(erro => {
+        console.error('Erro ao cadastrar o usuário:', erro);
+        alert('An error occurred during registration. Please try again later.');
+        return of(null); // Retorna um valor "neutro" para continuar o fluxo
+      })
+    ).subscribe(
+      retorno => {
+        if (retorno) {
+          this.users.push(retorno);
+          this.user = new userData();
+          alert('Check your email to confirm the registration!');
+        }
+      });
+  }
 
 }
 

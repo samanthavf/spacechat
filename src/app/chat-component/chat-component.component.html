@@ -5,21 +5,22 @@
 
 <div class="main-container">
   <div class="container-video">
-    <video id="spaceman" autoplay loop muted >
+    <video id="spaceman" autoplay loop muted>
       <source src="assets/spaceman-chat.mp4" type="video/mp4">
     </video>
   </div>
 
   <div class="message-container">
-    <div *ngFor="let msg of messages$ | async" class="chat-message"> <strong>{{user}}</strong>{{msg.message}}</div>
+    <div *ngFor="let msg of messages$ | async" class="chat-message"><strong>{{
+        msg.name }}:</strong> {{ msg.message }}</div>
   </div>
 
   <div class="message-send">
-    <input type="text" [(ngModel)]="message" placeholder="Digite sua mensagem..." />
-    <button (click)="sendMessage()">Enviar</button>
+    <input type="text" [(ngModel)]="message"
+      placeholder="Digite sua mensagem..." />
+    <button class="btn btn-primary" (click)="sendMessage()"><i
+        class="bi bi-send"></i>Enviar</button>
+    <button type="button" class="btn btn-danger" (click)="sair()">sair</button>
   </div>
 
 </div>
-
-  
-  

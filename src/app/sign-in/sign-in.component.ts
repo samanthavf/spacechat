@@ -45,7 +45,12 @@ export class SignInComponent {
     ).subscribe(
       retorno => {
         if (retorno) {
-        this.users.push(retorno);
+          console.log('retorno:', retorno)
+          console.log('Usuário logado:', retorno.name);        
+          localStorage.setItem('userName', retorno.name);
+          console.log('Email logado:', retorno.email);        
+          localStorage.setItem('userEmail', retorno.email);
+          this.users.push(retorno);
           this.user = new userLogin();
           this.router.navigate(['/chat']);
         }});

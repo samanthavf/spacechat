@@ -4,15 +4,15 @@
     height: 80%;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    box-shadow: 
-      0 0 20px #00c8ff, 
-      0 0 40px #8900d4, 
+    box-shadow:
+      0 0 20px #00c8ff,
+      0 0 40px #8900d4,
       0 0 80px #1f006c;
     backdrop-filter: blur(10px);
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
-  
+
   .container::before {
     content: '';
     position: absolute;
@@ -23,18 +23,21 @@
     background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
     animation: pulseEffect 3s infinite ease-in-out;
   }
-  
+
   @keyframes pulseEffect {
-    0%, 100% {
+
+    0%,
+    100% {
       transform: scale(1);
     }
+
     50% {
       transform: scale(1.1);
     }
   }
-  
 
-  .background-container{
+
+  .background-container {
     position: absolute;
     bottom: 70px;
     width: 69%;
@@ -46,25 +49,25 @@
     box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
   }
 
-  .spaceman{
+  .spaceman {
     position: absolute;
     top: -50px;
     width: 50%;
     height: 90vh;
     overflow: hidden;
-    border-top-left-radius: 10px;    
+    border-top-left-radius: 10px;
     background-color: #1f006c;
     border-bottom-left-radius: 10px;
     box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
   }
 
-  #apresentation-text{
+  #apresentation-text {
     position: absolute;
     top: 35px;
     left: 5%;
   }
-  
-  #apresentation-text-h2{
+
+  #apresentation-text-h2 {
     position: absolute;
     top: 65%;
     left: 5%;
@@ -79,72 +82,78 @@
     left: 55%;
   }
 
-input{
-  border: none;
-  outline: none;
-  border: none;
-  width: 300px;
-  height: 35px;
-  border-radius: 3px;
-  margin: 30px;
-  background-color: rgb(221, 239, 255, 0.1);
-  border-bottom: 2px solid transparent;
-}
+  input {
+    border: none;
+    outline: none;
+    border: none;
+    width: 300px;
+    height: 35px;
+    border-radius: 3px;
+    margin: 30px;
+    background-color: rgb(221, 239, 255, 0.1);
+    border-bottom: 2px solid transparent;
+  }
 
-.line{
-  position: absolute;
-  display: flex;
-  width: 46%;
-  left: 4%;
-  height: 5px;
-  margin-top: 24.6%;
-  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(90deg, #00ffff, #ff007f, #ff007f, #00ffff);
-  box-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3), 0 0 15px rgba(255, 0, 127, 0.5), 0 0 20px rgba(255, 0, 127, 0.3); /* Efeito neon mais suave */
+  .line {
+    position: absolute;
+    display: flex;
+    width: 46%;
+    left: 4%;
+    height: 5px;
+    margin-top: 24.6%;
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, #00ffff, #ff007f, #ff007f, #00ffff);
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3), 0 0 15px rgba(255, 0, 127, 0.5), 0 0 20px rgba(255, 0, 127, 0.3);
+    /* Efeito neon mais suave */
 
-}
+  }
 
-.line:nth-child(1) {
-  top: -99px; /* Primeira linha */
-}
+  .line:nth-child(1) {
+    top: -99px;
+    /* Primeira linha */
+  }
 
-.line:nth-child(2) {
-  top: 4px; /* Segunda linha */
-}
+  .line:nth-child(2) {
+    top: 4px;
+    /* Segunda linha */
+  }
 
-.line:nth-child(3) {
-  top: 98px; /* Terceira linha */
-}
+  .line:nth-child(3) {
+    top: 98px;
+    /* Terceira linha */
+  }
 
-button{
-  position: absolute;
-  top: 73%;
-  left: 32px;
-  width: 300px;
-  height: 35px;
-  border: none;
-  border-radius: 10px;
-  font-size: 15px;
-  background: linear-gradient(90deg, #ff1493, #8a2be2, #ff1493);
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(255, 20, 147, 0.2), 0 0 30px rgba(138, 43, 226, 0.2); /* Brilho em tons de Rosa e Roxo */
-}
+  button {
+    position: absolute;
+    top: 73%;
+    left: 32px;
+    width: 300px;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    background: linear-gradient(90deg, #ff1493, #8a2be2, #ff1493);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 20, 147, 0.2), 0 0 30px rgba(138, 43, 226, 0.2);
+    /* Brilho em tons de Rosa e Roxo */
+  }
 
-button:hover {
-  box-shadow: 0 0 15px rgba(255, 20, 147, 0.8), 0 0 30px rgba(138, 43, 226, 0.8); /* Brilho em tons de Rosa e Roxo */
-}
+  button:hover {
+    box-shadow: 0 0 15px rgba(255, 20, 147, 0.8), 0 0 30px rgba(138, 43, 226, 0.8);
+    /* Brilho em tons de Rosa e Roxo */
+  }
 
-.title{
-  position: absolute;
-  left: 58%;
-  top: 20%;
-  font-size: 27px;
-}
+  .title {
+    position: absolute;
+    left: 58%;
+    top: 20%;
+    font-size: 27px;
+  }
 
-.login-link{
-  position: absolute;
-  top: 86%;
-  left: 24%;
-  color: rgb(121, 120, 120);
-}
+  .login-link {
+    position: absolute;
+    top: 86%;
+    left: 24%;
+    color: rgb(121, 120, 120);
+  }

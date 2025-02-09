@@ -32,8 +32,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 50px;
-  padding: 55px;
+  gap: 30px;
+  padding: 40px;
 }
 
 .message-send input {
@@ -54,22 +54,16 @@
 }
 
 .message-send button {
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-   z-index: 100;
+  z-index: 100;
 }
 
-.message-send button:hover {
+.message-sendi button:hover {
   background-color: #357ab7;
 }
 
-.message-send button:active {
+.message-sendi button:active {
   background-color: #2a5b8f;
 }
 
@@ -78,10 +72,11 @@
   margin-top: 28%;
   width: 100%;
   height: 65vh;
-  padding: 10px;
   color:white;
-  z-index: 100;
+  justify-items: start;  
+  row-gap: 5px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
-
 
 

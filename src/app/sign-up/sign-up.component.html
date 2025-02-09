@@ -1,29 +1,28 @@
-    <div class="background-container">
-        <div class="spaceman">
-            <video id="spaceman" autoplay loop muted >
-                <source src="assets/spaceman.mp4" type="video/mp4">
-              </video>
-        </div>
-            <h1 id="apresentation-text"> Welcome to NOME <br> connect and chat <br> effortlessly! </h1>
-            <h2 id="apresentation-text-h2"> Connect, collaborate, and communicate <br> seamlessly in real-time.</h2>
+ <div class="background-container">
+    <div class="spaceman">
+        <video id="spaceman" autoplay loop muted>
+            <source src="assets/spaceman.mp4" type="video/mp4">
+        </video>
     </div>
+    <h1 id="apresentation-text"> Welcome to NOME <br> connect and chat <br>
+        effortlessly! </h1>
+    <h2 id="apresentation-text-h2"> Connect, collaborate, and communicate <br>
+        seamlessly in real-time.</h2>
+</div>
 
-        <h2 class="title">create your account</h2>
+<h2 class="title">create your account</h2>
 
-    <div class="input-container">
+<div class="input-container">
 
-        <div class="line"></div> 
-        <div class="line"></div>
-        <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
 
-        <input type="text" [(ngModel)]="user.name" placeholder="username"> 
-        <input type="email" [(ngModel)]="user.email" placeholder="email"> 
-        <input type="password" [(ngModel)]="user.password" placeholder="password">
+    <input type="text" [(ngModel)]="user.name" placeholder="username">
+    <input type="email" [(ngModel)]="user.email" placeholder="email">
+    <input type="password" [(ngModel)]="user.password" placeholder="password">
 
-        <button type="submit" (click)="send()">Submit</button>
+    <button type="submit" (click)="send()">Submit</button>
 
-        <a href="/sign-in" class="login-link">Login</a>
-      </div>
-
-
-      
+    <a href="/sign-in" class="login-link">Login</a>
+</div>
