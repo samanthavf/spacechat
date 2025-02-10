@@ -69,6 +69,7 @@
 
   #apresentation-text-h2 {
     position: absolute;
+    font-size: 25px;
     top: 65%;
     left: 5%;
   }
@@ -83,6 +84,7 @@
   }
 
   input {
+    position: relative;
     border: none;
     outline: none;
     border: none;
@@ -92,36 +94,69 @@
     margin: 30px;
     background-color: rgb(221, 239, 255, 0.1);
     border-bottom: 2px solid transparent;
+    z-index: 2;
   }
 
   .line {
     position: absolute;
     display: flex;
-    width: 46%;
-    left: 4%;
-    height: 5px;
+    width: 45.5%;
+    left: 3.6%;
+    height: 40px;
     margin-top: 24.6%;
+    border-radius: 3px;
     box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(90deg, #00ffff, #ff007f, #ff007f, #00ffff);
-    box-shadow: 0 0 5px rgba(0, 255, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3), 0 0 15px rgba(255, 0, 127, 0.5), 0 0 20px rgba(255, 0, 127, 0.3);
-    /* Efeito neon mais suave */
+    background: linear-gradient(90deg, #00ffff, #9b5de5, #9b5de5, #00ffff);
+    box-shadow:
+      0 0 5px rgba(0, 255, 255, 0.5),
+      0 0 10px rgba(0, 255, 255, 0.3),
+      0 0 15px rgba(155, 93, 229, 0.3),
+      0 0 20px rgba(155, 93, 229, 0.2);
+    z-index: 0;
+    animation: glow 2s infinite alternate;
+  }
 
+  @keyframes glow {
+    0% {
+      box-shadow:
+        0 0 5px rgba(0, 255, 255, 0.5),
+        /* Azul claro */
+        0 0 10px rgba(0, 255, 255, 0.3),
+        /* Azul suave */
+        0 0 15px rgba(155, 93, 229, 0.3),
+        /* Lilás mais forte */
+        0 0 20px rgba(155, 93, 229, 0.1);
+      /* Lilás mais suave */
+    }
+
+    100% {
+      box-shadow:
+        0 0 10px rgba(0, 255, 255, 0.6),
+        /* Azul suave */
+        0 0 15px rgba(0, 255, 255, 0.4),
+        /* Azul mais suave */
+        0 0 20px rgba(155, 93, 229, 0.5),
+        /* Lilás mais suave */
+        0 0 30px rgba(155, 93, 229, 0.3);
+      /* Lilás mais suave */
+    }
   }
 
   .line:nth-child(1) {
-    top: -99px;
+    top: -139px;
     /* Primeira linha */
   }
 
   .line:nth-child(2) {
-    top: 4px;
+    top: -44px;
     /* Segunda linha */
   }
 
   .line:nth-child(3) {
-    top: 98px;
+    top: 50px;
     /* Terceira linha */
   }
+
 
   button {
     position: absolute;
