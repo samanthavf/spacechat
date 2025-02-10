@@ -39,7 +39,7 @@ export class SignInComponent {
     this.userServico.login(this.user).pipe(
       catchError(erro => {
         console.error('Erro ao realizar login o usuário:', erro);
-        alert('An error occurred during Login. Please try again later.');
+        alert('Ocorreu um erro durante o login. Por favor, tente novamente mais tarde.');
         return of(null); // Retorna um valor "neutro" para continuar o fluxo
     })
     ).subscribe(

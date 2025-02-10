@@ -24,7 +24,7 @@ export class SignUpComponent {
     this.userServico.cadastrar(this.user).pipe(
       catchError(erro => {
         console.error('Erro ao cadastrar o usuário:', erro);
-        alert('An error occurred during registration. Please try again later.');
+        alert('Ocorreu um erro durante o cadastro. Por favor, tente novamente mais tarde.');
         return of(null); // Retorna um valor "neutro" para continuar o fluxo
       })
     ).subscribe(
@@ -32,7 +32,7 @@ export class SignUpComponent {
         if (retorno) {
           this.users.push(retorno);
           this.user = new userData();
-          alert('Check your email to confirm the registration!');
+          alert('Verifique seu e-mail para confirmar o cadastro!');
         }
       });
   }
