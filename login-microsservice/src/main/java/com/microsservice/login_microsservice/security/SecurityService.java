@@ -40,21 +40,21 @@ public class SecurityService implements UserDetailsService{
 	
 	
 	public LoginValidateRequestDTO login(final LoginRequestDTO dto) throws Exception{
-	VerificationRequest request = new VerificationRequest(dto.email(), dto.senha());
-	
-     Optional<VerificationRequest> users = client.load(request);
-     VerificationRequest  user = users.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado " + dto.email())); 	
+	 VerificationRequest request = new VerificationRequest(dto.email(), dto.senha());
+     Optional<VerificationRequest> userData = client.load(request);
+     
+     VerificationRequest  user = userData.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado " + dto.email())); 	
      
      VerificatedEmail verificatedEmail = new VerificatedEmail(dto.id(),dto.email());
      
      Optional<VerificatedEmail> emailVerify = emailVerification.userVerify(verificatedEmail);
      VerificatedEmail emailValid = emailVerify.orElseThrow(() -> new UsernameNotFoundException("e-mail não foi verificado." + dto.email()));
      
-     
      Optional<LoginRequest> findEmail = repo.findByEmail(emailValid.getEmail());
      Optional<LoginRequest> findUser = repo.findByEmail(dto.email());
-        
-      LoginRequest newUser = new LoginRequest();
+     
+     LoginRequest newUser = new LoginRequest();
+     
      
      if (!findEmail.isPresent()) {
     	 newUser.setLogedIn(false);
@@ -72,6 +72,7 @@ public class SecurityService implements UserDetailsService{
 	}
         
      if (!findUser.isPresent()) {
+    	 newUser.setName(user.getName());
      	 newUser.setEmail(user.getEmail());
          newUser.setSenha(user.getSenha());
          newUser.setLogedIn(true);
@@ -79,14 +80,17 @@ public class SecurityService implements UserDetailsService{
 		} else {
 		    if (!findUser.get().isLogedIn()) { 
 		        findUser.get().setLogedIn(true);
+		        findUser.get().setName(user.getName());
 		        repo.save(findUser.get());
 		    } else {
 		        throw new Exception("O usuário já está logado.");
 		}}
 
  	final String Token = service.CreateToken(user);
-	return new LoginValidateRequestDTO(Token);
+	return new LoginValidateRequestDTO(Token, user.getName(),user.getEmail());
 	}
+	
+	
 	
 	public void logout(LoginRequestDTO dto) throws Exception {
 		Optional<LoginRequest> findUser = repo.findByEmail(dto.email());

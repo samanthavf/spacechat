@@ -15,7 +15,6 @@ import lombok.Data;
 @Data
 @Service
 public class TokenService {
-
 	private final Key key;
 	
 	public TokenService() {

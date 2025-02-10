@@ -26,6 +26,7 @@ public class LoginRequest implements UserDetails{
 	@Id
 	@GeneratedValue(generator = "UUID")
 	private UUID id;
+	private String name;
 	@Column(unique = true)
 	private String email;
 	private String senha;
