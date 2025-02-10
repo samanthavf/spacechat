@@ -23,6 +23,10 @@ public class SecurityService implements UserDetailsService{
 	private final PasswordEncoder encoder;
     private final EmailServiceClient emailServiceClient;
     
+    
+    public Optional<UsersRequest> findByEmail(String email){
+    	return repo.findByEmail(email);
+    }
 	
 	public UsersRequest register(UserDTO dto) throws Exception {
 		   Optional<UsersRequest> userExiste = repo.findByEmail(dto.email());
@@ -42,10 +46,12 @@ public class SecurityService implements UserDetailsService{
 		return savedUser;
 	}
 	
+	
+	
 	public VerificationRequest load(VerificationRequest request) throws UsernameNotFoundException {
 		  Optional<UsersRequest> users = repo.findByEmail(request.getEmail());
 		  UsersRequest user = users.orElseThrow(( ) -> new UsernameNotFoundException("Usuário não encontrado" + request));
-		  return new VerificationRequest(user.getEmail(), user.getPassword());
+		  return new VerificationRequest(user.getName(),user.getEmail(), user.getPassword());
 		}
 	
 	@Override

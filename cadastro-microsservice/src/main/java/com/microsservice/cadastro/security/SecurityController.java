@@ -1,6 +1,10 @@
 package com.microsservice.cadastro.security;
 
+import java.util.Optional;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +23,11 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("auth")
 public class SecurityController {
 	private final SecurityService service;
+	
+	@GetMapping("/find-email/{email}")
+	public ResponseEntity<Optional<UsersRequest>> findByEmail(@PathVariable String email){
+		return ResponseEntity.ok(service.findByEmail(email));
+	}
 	
 	@PostMapping("/register")
 	public ResponseEntity<UsersRequest> register(@RequestBody @Valid UserDTO dto){
