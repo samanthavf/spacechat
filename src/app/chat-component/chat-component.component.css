@@ -77,6 +77,18 @@
   row-gap: 5px;
   overflow: hidden;
   overflow-y: scroll;
+  scrollbar-color: transparent transparent;
 }
 
+.message-container::-webkit-scrollbar {
+  width: 8px;
+}
 
+.message-container::-webkit-scrollbar-track {
+  background: transparent; /* Torna o trilho da barra de rolagem transparente */
+}
+
+.message-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5); /* Cor da "cabeça" da barra de rolagem */
+  border-radius: 10px;
+}

@@ -120,25 +120,17 @@
     0% {
       box-shadow:
         0 0 5px rgba(0, 255, 255, 0.5),
-        /* Azul claro */
         0 0 10px rgba(0, 255, 255, 0.3),
-        /* Azul suave */
         0 0 15px rgba(155, 93, 229, 0.3),
-        /* Lilás mais forte */
         0 0 20px rgba(155, 93, 229, 0.1);
-      /* Lilás mais suave */
     }
 
     100% {
       box-shadow:
         0 0 10px rgba(0, 255, 255, 0.6),
-        /* Azul suave */
         0 0 15px rgba(0, 255, 255, 0.4),
-        /* Azul mais suave */
         0 0 20px rgba(155, 93, 229, 0.5),
-        /* Lilás mais suave */
         0 0 30px rgba(155, 93, 229, 0.3);
-      /* Lilás mais suave */
     }
   }
 
