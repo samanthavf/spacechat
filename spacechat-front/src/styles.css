@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  height: 99vh;
+  display: flex;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #1f006c, #29008a, #5200a3, #8900d4, #00c8ff);
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.sign-in-bg {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #000c1f, #001a40, #002a60, #003d80, #0055a1);
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+  overflow: hidden;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.chat {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: radial-gradient(circle at center, #001d3d, #000814);
+  color: #00ffcc;
+  font-family: 'Orbitron', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Efeito de estrelas */
+.chat::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.3;
+}
+
+/* Partículas brilhantes */
+.chat::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 255, 170, 0.3) 10%, transparent 70%);
+  mix-blend-mode: overlay;
+  opacity: 0.7;
+}
+
+/* Camada de estrelas fixas */
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  animation: moveStars 60s linear infinite;
+  background: transparent;
+}
+
+.stars {
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.8;
+  /* Estrelas mais visíveis */
+  z-index: -2;
+}
+
+/* Camada extra de estrelas pequenas piscando */
+.stars2 {
+  background: url('https://www.transparenttextures.com/patterns/tiny-crosses.png');
+  opacity: 0.6;
+  animation: twinkle 2s infinite alternate;
+  z-index: -1;
+}
+
+/* Camada de estrelas maiores para profundidade */
+.stars3 {
+  background: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+  opacity: 0.4;
+  animation: twinkle 3s infinite alternate;
+  z-index: -1;
+}
+
+.stars4 {
+  background: url('https://www.transparenttextures.com/patterns/tiny-crosses.png');
+  opacity: 0.6;
+  animation: twinkle 2s infinite alternate;
+  z-index: -1;
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes moveStars {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}

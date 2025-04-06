@@ -1,0 +1,94 @@
+.main-container{
+  position: absolute;
+  right: 30%;  
+  width: 37%;
+  border-radius: 10px;
+  height: 99vh;
+  background-color: rgb(221, 239, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+  top: 0;
+}
+
+.container-video{
+  position: absolute;
+  width: 100%;
+  height: 20vh;
+  background-color: #001c37;
+  overflow: hidden;
+  box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+#spaceman{
+  position: relative; 
+  top: -335%;
+  right: 2%;
+}
+
+
+.message-send{
+  position: absolute;
+  margin-top: 110%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 40px;
+}
+
+.message-send input {
+  width: 350px;
+  height: 30px;
+  flex-grow: 1;
+  padding: 4px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  z-index: 100;
+}
+
+.message-send input:focus {
+  border-color: #4a90e2;
+}
+
+.message-send button {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 100;
+}
+
+.message-sendi button:hover {
+  background-color: #357ab7;
+}
+
+.message-sendi button:active {
+  background-color: #2a5b8f;
+}
+
+.message-container{
+  position: absolute;
+  margin-top: 28%;
+  width: 100%;
+  height: 65vh;
+  color:white;
+  justify-items: start;  
+  row-gap: 5px;
+  overflow: hidden;
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent;
+}
+
+.message-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-container::-webkit-scrollbar-track {
+  background: transparent; /* Torna o trilho da barra de rolagem transparente */
+}
+
+.message-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5); /* Cor da "cabeça" da barra de rolagem */
+  border-radius: 10px;
+}

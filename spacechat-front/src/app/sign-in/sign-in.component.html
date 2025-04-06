@@ -1,0 +1,25 @@
+<div class="body">
+
+    <div class="main-container">
+        <div class="container-video">
+            <video id="spaceman" autoplay loop muted>
+                <source src="assets/spacemanBoat.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <h1 class="login-title">Login</h1>
+
+        <div class="input-container">
+            <div class="line"></div>
+            <div class="line"></div>
+            <input type="email" [(ngModel)]="user.email" placeholder="email">
+            <input type="password" [(ngModel)]="user.senha" placeholder="password">
+        </div>
+
+        <button type="submit" (click)="login()">Go!</button>
+
+        <a href="/sign-up" class="signup-link">Don't have an account?</a>
+
+    </div>
+
+</div>
