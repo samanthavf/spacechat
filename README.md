@@ -55,14 +55,14 @@ cd backend
 2. Configure o arquivo application.properties com suas informações:
    
 ```bash
-spring.datasource.url=jdbc:postgresql://localhost:5432/spacechat
+spring.datasource.url=jdbc:postgresql://localhost:5432/BD
 spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 
 spring.mail.host=smtp.seuprovedor.com
 spring.mail.port=587
-spring.mail.username=seu_email
-spring.mail.password=sua_senha
+spring.mail.username=username
+spring.mail.password=password
 spring.mail.properties.mail.smtp.auth=true
 spring.mail.properties.mail.smtp.starttls.enable=true
 
